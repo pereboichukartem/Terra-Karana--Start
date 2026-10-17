@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Terra Karana: Start</title>
+    <link rel="icon" type="image/png" href="title.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="stage" id="st">
+        <img src="scene.jpg" alt="Піксельний світ з плавучими островами, грибами, що світяться, і заходом сонця">
+        <div class="rays"></div>
+        <div class="fog" style="top:40%"></div>
+        <div class="fog" style="top:52%;animation-duration:70s;animation-direction:alternate-reverse;opacity:.75"></div>
+        <div class="fall" style="left:72.4%;top:28%;width:1.4%;height:16%"></div>
+        <div class="fall" style="left:62.3%;top:51%;width:1.6%;height:12%"></div>
+        <div class="fall" style="left:58%;top:52%;width:1%;height:8%"></div>
+        <div class="river"></div>
+        <canvas id="cv" width="836" height="470"></canvas>
+    </div>
+
+    <main class="content">
+        <img src="title.png" class="title" alt="Terra Karana">
+        <nav class="menu" id="menu" aria-label="Головне меню">
+            <!-- Замініть href="#" на сторінки вашої гри -->
+            <a class="btn btn--main" href="#" id="startBtn">Почати гру</a>
+            <a class="btn" href="#" id="continueBtn">Продовжити</a>
+            <a class="btn" href="#" id="settingsBtn">Налаштування</a>
+            <a class="btn" href="#" id="aboutBtn">Про гру</a>
+        </nav>
+    </main>
+
+    <div class="modal" id="modal-about">
+        <div class="modal-content">
+            <span class="close" id="close-about-modal">&times;</span>
+            <h2>Про гру</h2>
+            <p>
+                Terra Karana — це піксельна пригодницька гра про подорож по чарівному світі
+                плаваючих островів, загадкових джерел, магічних рослин і небезпечних кордонів.
+                Гра виконана за мотивами мультсеріалу Ninjago: Prime Empire, поєднуючи атмосферу подорожі,
+                дослідження та таємничих випробувань. Гравець вирушає в пошук легендарної ключ-катани,
+                збирає артефакти та долає випробування, які вимагають уважності, швидкості та
+                стратегічного мислення.
+            </p>
+
+            <div class="modal-section">
+                <h3>Особливості гри</h3>
+                <ul>
+                    <li>Оригінальний світ із піксельною атмосферою та плавною анімацією.</li>
+                    <li>Пошук та дослідження різних зон: лісів, водних просторів, островів і бійцівських ділянок.</li>
+                    <li>Механіка збору ресурсів, предметів і секретних знань.</li>
+                    <li>Складні, але зрозумілі завдання для гравця будь-якого рівня.</li>
+                    <li>Естетика фентезійного фону, що поєднує спокій і напругу.</li>
+                    <li>Готовність до розширення: нові рівні, локації та механіки.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modal-settings">
+        <div class="modal-content modal-content--settings">
+            <span class="close" id="close-settings-modal">&times;</span>
+            <h2>Налаштування</h2>
+
+            <div class="settings-grid">
+                <div class="setting-row">
+                    <label for="volume">Гучність звуків</label>
+                    <div class="setting-control">
+                        <input type="range" id="volume" name="volume" min="0" max="100" value="70">
+                        <span class="value-badge" id="volumetxt">70%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label for="music">Музика</label>
+                    <div class="setting-control">
+                        <input type="range" id="music" name="music" min="0" max="100" value="100">
+                        <span class="value-badge" id="musictxt">100%</span>
+                    </div>
+                </div>
+
+                <div class="setting-row">
+                    <label for="difficulty">Складність</label>
+                    <select id="difficulty" name="difficulty">
+                        <option>Легка</option>
+                        <option selected>Звичайна</option>
+                        <option>Важка</option>
+                    </select>
+                </div>
+
+                <div class="setting-row setting-row--check">
+                    <label for="hintsToggle">Підказки</label>
+                    <label class="switch">
+                        <input type="checkbox" checked id="hintsToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="setting-row setting-row--check">
+                    <label for="autosaveToggle">Автозбереження</label>
+                    <label class="switch">
+                        <input type="checkbox" checked id="autosaveToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-actions">
+                <button type="button" class="settings-btn settings-btn--main" id="applySettingsBtn">Застосувати</button>
+                <button type="button" class="settings-btn" id="resetSettingsBtn">За замовчуванням</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal-continue">
+        <div class="modal-content modal-content--continue">
+            <span class="close" id="close-continue-modal">&times;</span>
+            <h2>Продовжити гру</h2>
+            <p>Виберіть збережену гру, щоб продовжити:</p>
+            <ul id="saveList">
+
+            </ul>
+        </div>
+    </div>
+    <div class="modal" id="modal-name">
+        <div class="modal-content">
+            <h2>Як тебе звати?</h2>
+            <form id="nameForm">
+                <input id="nameInput" maxlength="14" placeholder="Ім'я" autocomplete="off" required>
+                <button class="settings-btn settings-btn--main">Почати</button>
+            </form>
+        </div>
+    </div>
+    <div class="modal" id="modal-quests">
+        <div class="modal-content">
+            <span class="close" id="close-quests">&times;</span>
+            <h2>Квести</h2>
+            <ul id="questList"></ul>
+        </div>
+    </div>
+    <div class="modal" id="modal-map">
+        <div class="modal-content">
+            <span class="close" id="close-map">&times;</span>
+            <h2>Карта Теракарани</h2>
+            <div id="mapWrap"><img src="map.jpg" alt="Карта">
+                <div id="mapPoints"></div>
+            </div>
+            <div id="mapInfo"></div>
+            <textarea id="mapExport" rows="6" style="width:100%" hidden></textarea>
+        </div>
+    </div>
+    <div class="modal" id="modal-pause">
+        <div class="modal-content modal-content--pause">
+            <h2>Гру призупинено</h2>
+            <p>Твоя пригода чекатиме на тебе.</p>
+            <div class="pause-actions">
+                <button type="button" class="settings-btn settings-btn--main" id="resumeGameBtn">Продовжити гру</button>
+                <button type="button" class="settings-btn" id="pauseSettingsBtn">Налаштування</button>
+                <button type="button" class="settings-btn" id="achievementsBtn">Досягнення</button>
+                <button type="button" class="settings-btn" id="pauseMenuBtn">До головного меню</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="modal" id="modal-achievements">
+        <div class="modal-content modal-content--achievements">
+            <span class="close" id="close-achievements">&times;</span>
+            <h2>Досягнення</h2>
+            <p id="achievementProgress"></p>
+            <ul id="achievementList" class="achievement-list"></ul>
+            <div class="settings-actions">
+                <button type="button" class="settings-btn settings-btn--main" id="backToPauseBtn">Назад до паузи</button>
+            </div>
+        </div>
+    </div>
+    <div id="toast"></div>
+    <div class="game-container">
+        <div class="game-screen" id="gameScreen">
+            <canvas id="gameCanvas" width="800" height="450"></canvas>
+            <iframe id="sceneFrame" title="" tabindex="-1"></iframe>
+            <div id="fade"></div>
+            <div id="choices"></div>
+            <div class="dialogue-box" id="dialogueBox">
+                <p id="dialogueText"></p>
+                <button id="nextBtn">Далі</button>
+            </div>
+            <div class="game-ui" id="gameUI">
+                <div class="health-bar">
+                    <span>Здоров'я:</span>
+                    <div class="health-fill" id="healthFill"></div>
+                </div>
+                <div class="right-panel">
+                    <div class="inventory">
+                        <span>Інвентар:</span>
+                        <ul id="inventoryList"></ul>
+                    </div>
+                    <button class="menu-btn" id="menuBtn">Пауза</button>
+                    <button class="menu-btn" id="questBtn" hidden>Квести</button>
+                    <button class="menu-btn" id="mapBtn" >Карта</button>
+                </div>
+            </div>
+            <div class="npc" id="npcContainer">
+                <img id="npc1" src="" alt="NPC">
+                <img id="npc2" src="" alt="NPC">
+                <img id="npc3" src="" alt="NPC">
+            </div>
+
+        </div>
+    </div>
+
+    <audio id="bg-music" src="ninjago_menu_music.wav" loop></audio>
+    <audio id="die-sound1" src="die1.wav"></audio>
+    <audio id="die-sound2" src="die2.wav"></audio>
+    <audio id="die-sound3" src="die3.wav"></audio>
+    <script src="script.js"></script>
+    <script src="world.js"></script>
+    <script src="game.js"></script>
+</body>
+
+</html>
