@@ -516,7 +516,7 @@ window.addEventListener("message", e => {
 
 function showEnd() {
     dialogueBox.style.display = "flex";
-    dialogueText.textContent = "Кінець.";
+    dialogueText.textContent = "Кінець Частини I. Твоя легенда у Верховній Імперії тільки починається...";
     nextBtn.style.display = "none";
     choicesBox.innerHTML = "";
     addButton("Грати знову", startGame);
