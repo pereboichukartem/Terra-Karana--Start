@@ -613,7 +613,8 @@ const achievements = [
     { title: "Серце воїна", description: "Врятуй пораненого мандрівника в лісі.", unlocked: () => !!state.flags.saved_traveler },
     { title: "Друг Окіно", description: "Захисти Окіно від зграї перевертнів.", unlocked: () => !!state.flags.helped_okino_wolves },
     { title: "Пам'ять полеглих", description: "Знайди меч Першого майстра Окіно.", unlocked: () => state.items.includes("Меч Першого майстра") },
-    { title: "Легенда Імперії", description: "Здобудь Катану-ключ і пройди випробування.", unlocked: () => state.quests.key === "done" }
+    { title: "Легенда Імперії", description: "Здобудь Катану-ключ і пройди випробування.", unlocked: () => state.quests.key === "done" },
+    { title: "Погляд у майбутнє", description: "Знайди Розлом Коду в Ілюзії та відкрий таємницю 2-ї частини.", unlocked: () => !!state.flags.saw_unagami }
 ];
 function renderAchievements() {
     const list = $("achievementList");
