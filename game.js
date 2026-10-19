@@ -349,12 +349,7 @@ function loadScene(file, done) {
     }, 250);
 }
 
-// ======================= NPC-СПРАЙТИ =======================
-// У сцені:  npc: "okino-front.png"
-//           npc: ["okino-front.png", "boss-red-dragon.png"]   (до 3 спрайтів поруч)
-//           npc: s => s.flags.with_okino ? "okino-front.png" : ""   |   npc: ""  (сховати)
-// Якщо npc не вказано: лишаються постійні спрайти попередньої сцени, а вороги (boss-, enemy-) зникають.
-const NPC_TRANSIENT = /^(boss-|enemy-|npc-mountain-troll)/;      // ці спрайти не переходять у наступні сцени
+const NPC_TRANSIENT = /^(boss-|enemy-|npc-mountain-troll)/;      
 const NPC_SLOTS = { 1: [15], 2: [15, 82], 3: [15, 50, 85] };      // позиції слотів, % ширини екрана
 const npcHeight = src => /^boss-/.test(src) ? "86vh" : /^enemy-/.test(src) ? "66vh" : "70vh";
 
@@ -642,7 +637,8 @@ const achievements = [
     { title: "Серце воїна", description: "Врятуй пораненого мандрівника в лісі.", unlocked: () => !!state.flags.saved_traveler },
     { title: "Друг Окіно", description: "Захисти Окіно від зграї перевертнів.", unlocked: () => !!state.flags.helped_okino_wolves },
     { title: "Пам'ять полеглих", description: "Знайди меч Першого майстра Окіно.", unlocked: () => state.items.includes("Меч Першого майстра") },
-    { title: "Легенда Імперії", description: "Здобудь Катану-ключ і пройди випробування.", unlocked: () => state.quests.key === "done" }
+    { title: "Легенда Імперії", description: "Здобудь Катану-ключ і пройди випробування.", unlocked: () => state.quests.key === "done" },
+    { title: "Погляд у майбутнє", description: "Знайди Розлом Коду в Ілюзії та відкрий таємницю Унагамі.", unlocked: () => !!state.flags.saw_unagami },
 ];
 function renderAchievements() {
     const list = $("achievementList");
