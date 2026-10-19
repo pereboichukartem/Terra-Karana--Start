@@ -354,6 +354,14 @@ function setNpc(src) {
     npc1.src = src;
 }
 
+// фон сцени: спершу правила з scenes.js (sceneRules), інакше поле scene з історії
+function sceneFile(scene) {
+    if (!scene.keepScene && typeof sceneRules !== "undefined") {
+        for (const [re, file] of sceneRules) if (re.test(scene.id)) return file;
+    }
+    return scene.scene;
+}
+
 function show(id) {
     const scene = story.find(s => s.id === id);
     if (!scene) { console.error("Немає сцени:", id); showEnd(); return; }
@@ -390,7 +398,7 @@ function show(id) {
     if (scene.sfx) playSfx(scene.sfx);
     if (scene.npc !== undefined) setNpc(typeof scene.npc === "function" ? scene.npc(state) : scene.npc);
 
-    loadScene(scene.scene, () => {
+    loadScene(sceneFile(scene), () => {
         if (token !== showToken) return;
         if (activeLines.length) {
             showLine();
@@ -437,10 +445,10 @@ function showLine() {
 
 nextBtn.addEventListener("click", () => {
     if (gamePaused) return;
-    if (!current || !current.lines || nextBtn.style.display === "none") return;
+    if (!current || !activeLines.length || nextBtn.style.display === "none") return;
     if (skipTyping()) return;
     lineIndex++;
-    if (lineIndex < current.lines.length) showLine();
+    if (lineIndex < activeLines.length) showLine();
     else afterLines();
 });
 
