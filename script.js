@@ -290,7 +290,7 @@ const story = [
     {
         id: "training_sparring_okino",
         scene: "training-hall-animated.html",
-        npc: "okino-front.png",
+        npc: "okino-combat.png",
         hint: "Якщо ти ідеально виконав першу вправу, застосуй вивчену техніку!",
         lines: [
             [okino, "А тепер — фінальний спаринг. Покажи, як ти тримаєш удар у справжньому бою! Захищайся!"]
@@ -402,7 +402,7 @@ const story = [
     {
         id: "forest_with_okino_start",
         scene: "jungle-world-animated.html",
-        npc: "okino-front.png",
+        npc: ["okino-front.png", "enemy-strangler-vines.png"],
         set: { with_okino: true },
         hint: "Ліани-душителі дають «Міцну ліану» для гарпуна, а в печері можна здобути рідкісний трофей для коваля.",
         lines: [
@@ -442,7 +442,7 @@ const story = [
     {
         id: "cave_with_okino",
         scene: "digital-tunnel.html",
-        npc: "okino-front.png",
+        npc: ["okino-front.png", "enemy-spider-snake.png"],
         lines: [
             ["", "Ви заходите під склепіння печери, освітленої неоновими кристалами. Раптом зі стелі лунає шипіння."],
             [you, "Окіно, поглянь угору! На нас сунуть 🕷️павуко-змії🐍!"]
@@ -485,7 +485,7 @@ const story = [
     {
         id: "forest_shrine",
         scene: "jungle-world-animated.html",
-        npc: "okino-front.png",
+        npc: ["okino-front.png", "npc-traveler.png"],
         hint: "Допомога іншим гравцям у Теракарані винагороджується унікальними артефактами.",
         lines: [
             ["", "Біля старого вівтаря посеред джунглів сидить поранений мандрівник. Лічильник його життів блимає червоним."],
@@ -524,7 +524,7 @@ const story = [
     {
         id: "forest_werewolves_okino",
         scene: "jungle-world-animated.html",
-        npc: "okino-front.png",
+        npc: ["okino-front.png", "enemy-werewolf.png"],
         lines: [
             [okino, "Попереду вже видно розвилку та високі вітряки поселення Роздоріж!"],
             ["", "Раптом із хащів вистрибують люті 🐺перевертні, відрізаючи шлях!"],
@@ -593,7 +593,7 @@ const story = [
     {
         id: "forest_alone_deep",
         scene: "jungle-world-animated.html",
-        npc: "",
+        npc: "enemy-werewolf.png",
         lines: [
             [empire, "УВАГА: ГРАВЕЦЬ {name} РУХАЄТЬСЯ БЕЗ ПРОВІДНИКА. АКТИВОВАНО ПОСИЛЕНИЙ ПАТРУЛЬ."],
             ["", "Попереду на стежці гарчать 🐺перевертні, а трохи лівіше видно печеру, вхід до якої обплетений міцними ліанами."]
@@ -622,6 +622,7 @@ const story = [
     {
         id: "cave_alone",
         scene: "digital-tunnel.html",
+        npc: "enemy-cave-troll.png",
         give: "Міцна ліана",
         lines: [
             ["", "Ти зрізаєш 🌿Міцну ліану біля входу і заходиш у печеру. Попереду у напівтемряві бовваніє силует величезного 🧌троля!"],
@@ -697,7 +698,7 @@ const story = [
     {
         id: "town_blacksmith",
         scene: "arcade-city-animated.html",
-        npc: "",
+        npc: "npc-takeshi.png",
         lines: [
             ["Коваль Такеші", "Ого, бачу у твоїх руках {weapon}! Якщо маєш рідкісні трофеї з лісу, я загартую твою зброю в плазмовому горні та дам Сталевий карабін для гірського гарпуна."],
             ["Коваль Такеші", "Також можеш сходити за частокіл міста і нарубати мені диких ліан для розпалу печі."]
@@ -733,7 +734,7 @@ const story = [
     {
         id: "town_herbalist",
         scene: "arcade-city-animated.html",
-        npc: "",
+        npc: "npc-mia.png",
         hp: 30,
         lines: [
             ["Травниця Мія", "Випий цього гарячого настою з вогнецвіту — рани загояться як на очах."],
@@ -745,7 +746,7 @@ const story = [
     {
         id: "town_bounty",
         scene: "arcade-city-animated.html",
-        npc: "",
+        npc: "boss-shadow-stalker.png",
         lines: [
             ["", "Ти берешся за контракт «Тінь Роздоріжжя»: у сутінках біля старого мосту чатує Лісовий Тіньовик, який викрадає енергію мандрівників."],
             ["", "Вже виконано! Старійшина дякує тобі за безпеку доріг.", s => s.quests.bounty === "done"]
@@ -770,6 +771,7 @@ const story = [
     {
         id: "bounty_win",
         scene: "jungle-world-animated.html",
+        npc: ["boss-shadow-stalker.png", "npc-elder.png"],
         hp: -20,
         give: "Еліксир Драконоборця",
         finishQuest: "bounty",
@@ -799,7 +801,7 @@ const story = [
     {
         id: "merchant",
         scene: "arcade-city-animated.html",
-        npc: "okino-front.png",
+        npc: ["okino-front.png", "npc-merchant.png"],
         place: "harpoon_town",
         checkpoint: true,
         hint: "Не купуй гарпун зі старим тросом без страховки — використай Міцну ліану або Сталевий карабін.",
@@ -846,7 +848,7 @@ const story = [
     {
         id: "mountain_troll_encounter",
         scene: "sword-field-animated.html",
-        npc: "okino-front.png",
+        npc: ["okino-front.png", "npc-mountain-troll.png"],
         hint: "Пам'ятай попередження травниці Мії про гірських тролів!",
         lines: [
             ["", "На вузькому карнизі вам заступає дорогу хитрий гірський 🧌Троль."],
@@ -912,6 +914,7 @@ const story = [
     {
         id: "abyss_descent",
         scene: "digital-tunnel.html",
+        npc: "enemy-abyss-wraith.png",
         place: "abyss",
         lines: [
             ["", "На дні Безодні панує абсолютна темрява, в якій блукають голографічні фантоми переможених гравців 😨."]
@@ -949,6 +952,7 @@ const story = [
     {
         id: "dino_valley_scene",
         scene: "jungle-world-animated.html",
+        npc: "boss-dino-rex.png",
         place: "dino_valley",
         checkpoint: true,
         lines: [
@@ -982,7 +986,7 @@ const story = [
     {
         id: "dino_spotted",
         scene: "jungle-world-animated.html",
-        npc: "okino-front.png",
+        npc: "okino-combat.png",
         hp: -25,
         lines: [
             ["", "Тиранозавр помічає тебе й ударом хвоста збиває з ніг! Та в останню мить із верхівки скелі стрибає Окіно!"],
@@ -1109,7 +1113,7 @@ const story = [
     {
         id: "dragon_lair",
         scene: "arcade-fight-animated.html",
-        npc: "okino-front.png",
+        npc: ["okino-front.png", "boss-red-dragon.png"],
         place: "labyrinth",
         checkpoint: true,
         hint: "Ти можеш спробувати вкрасти ключ тихо або використати знання зі щоденника Першого майстра в бою.",
@@ -1151,7 +1155,7 @@ const story = [
     {
         id: "dragon_awakes",
         scene: "arcade-fight-animated.html",
-        npc: "okino-front.png",
+        npc: ["okino-front.png", "boss-red-dragon.png"],
         lines: [
             ["", "🟥Червоний 🐉Дракон розплющує палаючі очі й здіймається під склепіння залу, набираючи в груди полум'я!"],
             [okino, "Він готує вогняний шторм! Цілься у слабке місце на хребті, а я відверну його удар на себе!"]

@@ -41,6 +41,7 @@ let playerName = "Майстер";
 let playerWeapon = null;
 let current = null;
 let activeLines = [];
+let persistNpc = [];      // спрайти, що лишаються на наступних сценах (без ворогів)
 let lineIndex = 0;
 let currentFile = "";
 let waiting = false;
@@ -272,13 +273,14 @@ function changeHp(delta) {
 }
 
 
-const snapshot = id => ({ id, name: playerName, weapon: playerWeapon, hp: state.hp, items: [...state.items], quests: { ...state.quests }, flags: { ...state.flags }, place: state.place, visited: [...(state.visited || [])], retries: isFinite(retriesLeft) ? retriesLeft : -1 });
+const snapshot = id => ({ id, name: playerName, weapon: playerWeapon, hp: state.hp, items: [...state.items], quests: { ...state.quests }, flags: { ...state.flags }, place: state.place, npcs: [...persistNpc], visited: [...(state.visited || [])], retries: isFinite(retriesLeft) ? retriesLeft : -1 });
 
 function restore(s) {
     playerName = s.name; playerWeapon = s.weapon;
     state.hp = s.hp; state.items = [...s.items];
     state.quests = { ...(s.quests || {}) }; state.flags = { ...(s.flags || {}) };
     state.place = s.place || null;
+    persistNpc = [...(s.npcs || [])];
     state.visited = [...(s.visited || (s.place ? [s.place] : []))];
     renderUI();
     show(s.id);
@@ -297,6 +299,7 @@ function startGame() {
     gamePaused = false;
     pendingAfterLines = false;
     playerWeapon = null; checkpoint = null;
+    persistNpc = [];
     retriesLeft = difficulty().retries;
     state.hp = 100; state.items = [];
     state.quests = {}; state.flags = {}; state.place = null; state.visited = [];
@@ -306,6 +309,7 @@ function startGame() {
 }
 
 function backToMenu() {
+    persistNpc = [];
     gamePaused = false;
     pendingAfterLines = false;
     GameMusic.stop();
@@ -345,13 +349,37 @@ function loadScene(file, done) {
     }, 250);
 }
 
-function setNpc(src) {
-    if (!src) { npcContainer.style.display = "none"; return; }
-    npcContainer.style.display = "flex";
-    npc1.style.display = "flex";
-    npc2.style.display = "none";
-    npc3.style.display = "none";
-    npc1.src = src;
+// ======================= NPC-СПРАЙТИ =======================
+// У сцені:  npc: "okino-front.png"
+//           npc: ["okino-front.png", "boss-red-dragon.png"]   (до 3 спрайтів поруч)
+//           npc: s => s.flags.with_okino ? "okino-front.png" : ""   |   npc: ""  (сховати)
+// Якщо npc не вказано: лишаються постійні спрайти попередньої сцени, а вороги (boss-, enemy-) зникають.
+const NPC_TRANSIENT = /^(boss-|enemy-|npc-mountain-troll)/;      // ці спрайти не переходять у наступні сцени
+const NPC_SLOTS = { 1: [15], 2: [15, 82], 3: [15, 50, 85] };      // позиції слотів, % ширини екрана
+const npcHeight = src => /^boss-/.test(src) ? "86vh" : /^enemy-/.test(src) ? "66vh" : "70vh";
+
+function setNpc(value) {
+    const raw = typeof value === "function" ? value(state) : value;
+    const list = !raw ? [] : Array.isArray(raw) ? raw.filter(Boolean).slice(0, 3) : [raw];
+    persistNpc = list
+        .map(s => s === "okino-combat.png" ? "okino-front.png" : s)
+        .filter(s => !NPC_TRANSIENT.test(s));
+    renderNpc(list);
+}
+
+function renderNpc(list) {
+    const imgs = [npc1, npc2, npc3];
+    npcContainer.style.display = list.length ? "flex" : "none";
+    const slots = NPC_SLOTS[list.length] || [];
+    imgs.forEach((img, i) => {
+        const src = list[i];
+        if (!src) { img.style.display = "none"; return; }
+        img.style.display = "flex";
+        img.style.left = slots[i] + "%";
+        img.style.height = npcHeight(src);
+        img.onerror = () => { img.style.display = "none"; };      // файла ще нема: спрайт просто не показується
+        img.src = src;
+    });
 }
 
 // фон сцени: спершу правила з scenes.js (sceneRules), інакше поле scene з історії
@@ -396,7 +424,8 @@ function show(id) {
     if (scene.finishQuest) finishQuest(scene.finishQuest);
     renderUI();
     if (scene.sfx) playSfx(scene.sfx);
-    if (scene.npc !== undefined) setNpc(typeof scene.npc === "function" ? scene.npc(state) : scene.npc);
+    if (scene.npc !== undefined) setNpc(scene.npc);
+    else renderNpc(persistNpc);                        // npc не вказано: лишаються постійні спрайти
 
     loadScene(sceneFile(scene), () => {
         if (token !== showToken) return;
@@ -516,7 +545,7 @@ window.addEventListener("message", e => {
 
 function showEnd() {
     dialogueBox.style.display = "flex";
-    dialogueText.textContent = "Кінець Частини I. Твоя легенда у Верховній Імперії тільки починається...";
+    dialogueText.textContent = "Кінець.";
     nextBtn.style.display = "none";
     choicesBox.innerHTML = "";
     addButton("Грати знову", startGame);
@@ -613,8 +642,7 @@ const achievements = [
     { title: "Серце воїна", description: "Врятуй пораненого мандрівника в лісі.", unlocked: () => !!state.flags.saved_traveler },
     { title: "Друг Окіно", description: "Захисти Окіно від зграї перевертнів.", unlocked: () => !!state.flags.helped_okino_wolves },
     { title: "Пам'ять полеглих", description: "Знайди меч Першого майстра Окіно.", unlocked: () => state.items.includes("Меч Першого майстра") },
-    { title: "Легенда Імперії", description: "Здобудь Катану-ключ і пройди випробування.", unlocked: () => state.quests.key === "done" },
-    { title: "Погляд у майбутнє", description: "Знайди Розлом Коду в Ілюзії та відкрий таємницю 2-ї частини.", unlocked: () => !!state.flags.saw_unagami }
+    { title: "Легенда Імперії", description: "Здобудь Катану-ключ і пройди випробування.", unlocked: () => state.quests.key === "done" }
 ];
 function renderAchievements() {
     const list = $("achievementList");
