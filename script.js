@@ -290,7 +290,7 @@ const story = [
     {
         id: "training_sparring_okino",
         scene: "training-hall-animated.html",
-        npc: "okino-combat.png",
+        npc: "okino-sword.png",
         hint: "Якщо ти ідеально виконав першу вправу, застосуй вивчену техніку!",
         lines: [
             [okino, "А тепер — фінальний спаринг. Покажи, як ти тримаєш удар у справжньому бою! Захищайся!"]
@@ -986,7 +986,7 @@ const story = [
     {
         id: "dino_spotted",
         scene: "jungle-world-animated.html",
-        npc: "okino-combat.png",
+        npc: "okino-sword.png",
         hp: -25,
         lines: [
             ["", "Тиранозавр помічає тебе й ударом хвоста збиває з ніг! Та в останню мить із верхівки скелі стрибає Окіно!"],
@@ -1084,7 +1084,7 @@ const story = [
     {
         id: "labyrinth_memory_awakened",
         scene: "digital-tunnel.html",
-        npc: "okino-combat.png",
+        npc: "okino-sword.png",
         set: { okino_awakened: true },
         lines: [
             ["", "Щойно Окіно торкається старого клинка, його очі спалахують яскравим бірюзовим світлом!"],
@@ -1121,7 +1121,7 @@ const story = [
     {
         id: "labyrinth_riddle_wrong",
         scene: "digital-tunnel.html",
-        npc: "okino-combat.png",
+        npc: "okino-sword.png",
         hp: -15,
         lines: [
             [empire, "ПОМИЛКА КОДУ! АКТИВОВАНО ЛАЗЕРНИЙ ЗАЛП!"],
@@ -1162,7 +1162,7 @@ const story = [
     {
         id: "dragon_epic_slay",
         scene: "arcade-fight-animated.html",
-        npc: "okino-combat.png",
+        npc: "okino-sword.png",
         give: "Катана-ключ",
         finishQuest: "key",
         lines: [
@@ -1174,7 +1174,7 @@ const story = [
     {
         id: "dragon_awakes",
         scene: "arcade-fight-animated.html",
-        npc: ["okino-combat.png", "boss-red-dragon.png"],
+        npc: ["okino-sword.png", "boss-red-dragon.png"],
         lines: [
             ["", "🟥Червоний 🐉Дракон розплющує палаючі очі й здіймається під склепіння залу, набираючи в груди полум'я!"],
             [okino, "Він готує вогняний шторм! Цілься у слабке місце на хребті, а я відверну його удар на себе!"]
@@ -1217,7 +1217,7 @@ const story = [
         id: "victory_illusion_overload",
         scene: "arcade-empire-portal.html",
         keepScene: true,
-        npc: "okino-combat.png",
+        npc: "okino-sword.png",
         set: { part2_unlocked: true, ending_overload: true },
         lines: [
             ["", "Ти з'єднуєш 🗝️Катану-ключ із ⚡Фрагментом Ядра, який здобув у Розломі Ілюзії! Браму пронизує золотий стовп енергії!"],
@@ -1233,7 +1233,7 @@ const story = [
         id: "victory_secret_hack",
         scene: "sword-field-animated.html",
         keepScene: true,
-        npc: ["okino-combat.png", "npc-traveler.png", "npc-elder.png"],
+        npc: ["okino-sword.png", "npc-traveler.png", "npc-elder.png"],
         set: { part2_unlocked: true, ending_liberator: true },
         lines: [
             ["", "Ти і Окіно одночасно встромляєте Катану-ключ та Меч Першого майстра у центр Поля Мечів!"],
