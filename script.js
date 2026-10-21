@@ -752,7 +752,7 @@ const story = [
     },
     {
         id: "town_bounty",
-        scene: "crossroads-town-animated.html",
+        scene: "forest-fork-animated.html",
         npc: "boss-shadow-stalker.png",
         lines: [
             ["", "Ти берешся за контракт «Тінь Роздоріжжя»: у сутінках на лісовій розвилці за містом чатує Лісовий Тіньовик, який викрадає енергію мандрівників."],
@@ -766,7 +766,7 @@ const story = [
     },
     {
         id: "bounty_win_clean",
-        scene: "forest-fork-animated.html",
+        scene: "crossroads-town-animated.html",
         npc: "npc-elder.png",
         give: "Еліксир Драконоборця",
         finishQuest: "bounty",
@@ -778,7 +778,7 @@ const story = [
     },
     {
         id: "bounty_win",
-        scene: "forest-fork-animated.html",
+        scene: "crossroads-town-animated.html",
         npc: "npc-elder.png",
         hp: -20,
         give: "Еліксир Драконоборця",
