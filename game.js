@@ -243,12 +243,15 @@ function playSfx(name) {
 
 function renderUI() {
     healthFill.style.width = state.hp + "%";
-    inventoryList.innerHTML = "";
+    
+    inventoryList.innerHTML = ""; 
+    
     state.items.forEach(item => {
         const li = document.createElement("li");
         li.textContent = item;
         inventoryList.append(li);
     });
+    
     questBtn.hidden = Object.keys(state.quests).length === 0;
     mapBtn.hidden = !(state.items.includes("Карта") || state.flags.map);
 }
