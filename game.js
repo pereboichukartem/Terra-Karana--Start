@@ -357,7 +357,7 @@ function setNpc(value) {
     const raw = typeof value === "function" ? value(state) : value;
     const list = !raw ? [] : Array.isArray(raw) ? raw.filter(Boolean).slice(0, 3) : [raw];
     persistNpc = list
-        .map(s => s === "okino-combat.png" ? "okino-front.png" : s)
+        .map(s => (s === "okino-combat.png" || s === "okino-sword.png") ? "okino-front.png" : s)
         .filter(s => !NPC_TRANSIENT.test(s));
     renderNpc(list);
 }

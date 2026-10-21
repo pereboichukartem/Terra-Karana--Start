@@ -8,7 +8,7 @@ const story = [
         id: "gaming_machine1",
         scene: "arcade-city-animated.html",
         lines: [
-            ["", "Нічне місто дихає неоном і дощем. Ти звертаєш у тихий провулок і помічаєш багряне сяйво крізь прочинені двері старого аркадного залу."],
+            ["", "Нічне місто дихає неоном і дощем. Ти зверташ у тихий провулок і помічаєш багряне сяйво крізь прочинені двері старого аркадного залу."],
             [you, "Дивно, зал мав би бути зачинений роки тому... Що там так яскраво світиться?"]
         ],
         next: "gaming_machine2"
@@ -330,7 +330,7 @@ const story = [
     // ==================== ТАБІР ОКІНО ТА ОТРИМАННЯ КАРТИ ====================
     {
         id: "okino_gift_map",
-        scene: "training-hall-animated.html",
+        scene: "okino-camp-animated.html",
         npc: "okino-front.png",
         place: "okino_camp",
         checkpoint: true,
@@ -351,7 +351,7 @@ const story = [
     },
     {
         id: "camp_explore",
-        scene: "training-hall-animated.html",
+        scene: "okino-camp-animated.html",
         npc: "",
         place: "okino_camp",
         lines: [
@@ -365,7 +365,7 @@ const story = [
     },
     {
         id: "camp_scroll",
-        scene: "training-hall-animated.html",
+        scene: "okino-camp-animated.html",
         set: { dragon_secret: true },
         startQuest: "memory",
         lines: [
@@ -377,7 +377,7 @@ const story = [
     },
     {
         id: "camp_potion",
-        scene: "training-hall-animated.html",
+        scene: "okino-camp-animated.html",
         give: "Цілюще зілля",
         lines: [
             ["", "Ти кладеш у сумку склянку з яскраво-блакитним цілющим відваром."]
@@ -386,7 +386,7 @@ const story = [
     },
     {
         id: "camp_return_okino",
-        scene: "training-hall-animated.html",
+        scene: "okino-camp-animated.html",
         npc: "okino-front.png",
         lines: [
             [okino, "Ви знайшли щось цікаве біля вівтаря, майстре? Готові вирушати в 🌳Ліс Прикрощів?"],
@@ -401,7 +401,7 @@ const story = [
     // ==================== ГІЛКА 1: ЛІС ПРИКРОЩІВ РАЗОМ З ОКІНО ====================
     {
         id: "forest_with_okino_start",
-        scene: "jungle-world-animated.html",
+        scene: "vine-gate-animated.html",
         npc: ["okino-front.png", "enemy-strangler-vines.png"],
         set: { with_okino: true },
         hint: "Ліани-душителі дають «Міцну ліану» для гарпуна, а в печері можна здобути рідкісний трофей для коваля.",
@@ -418,7 +418,7 @@ const story = [
     },
     {
         id: "forest_vines_katana",
-        scene: "jungle-world-animated.html",
+        scene: "vine-gate-animated.html",
         npc: "okino-front.png",
         give: "Міцна ліана",
         lines: [
@@ -429,7 +429,7 @@ const story = [
     },
     {
         id: "forest_vines_fight",
-        scene: "jungle-world-animated.html",
+        scene: "vine-gate-animated.html",
         npc: "okino-front.png",
         hp: -15,
         give: "Міцна ліана",
@@ -441,7 +441,7 @@ const story = [
     },
     {
         id: "cave_with_okino",
-        scene: "digital-tunnel.html",
+        scene: "cave-animated.html",
         npc: ["okino-front.png", "enemy-spider-snake.png"],
         lines: [
             ["", "Ви заходите під склепіння печери, освітленої неоновими кристалами. Раптом зі стелі лунає шипіння."],
@@ -454,7 +454,7 @@ const story = [
     },
     {
         id: "cave_okino_staff",
-        scene: "digital-tunnel.html",
+        scene: "cave-animated.html",
         npc: "okino-front.png",
         give: "Отруйне ікло",
         lines: [
@@ -465,7 +465,7 @@ const story = [
     },
     {
         id: "cave_okino_win",
-        scene: "digital-tunnel.html",
+        scene: "cave-animated.html",
         npc: "okino-front.png",
         hp: -20,
         give: "Отруйне ікло",
@@ -477,7 +477,7 @@ const story = [
     },
     {
         id: "cave_okino_lose",
-        scene: "digital-tunnel.html",
+        scene: "cave-animated.html",
         lose: "У вузькій печері було надто багато отруйних павуко-змій."
     },
 
@@ -500,6 +500,7 @@ const story = [
     {
         id: "side_wolf_den",
         scene: "jungle-world-animated.html",
+        npc: "okino-front.png",
         hp: -15,
         give: "Амулет Істини",
         set: { saved_traveler: true },
@@ -512,6 +513,7 @@ const story = [
     {
         id: "side_give_potion",
         scene: "jungle-world-animated.html",
+        npc: ["okino-front.png", "npc-traveler.png"],
         give: "Амулет Істини",
         set: { saved_traveler: true },
         lines: [
@@ -520,10 +522,10 @@ const story = [
         next: "forest_werewolves_okino"
     },
 
-    // ==================== ЗАСІДКА ПЕРЕВЕРТНІВ (З ОКІНО) ====================
+    // ==================== ЗАСІДКА ПЕРЕВЕРТНІВ БІЛЯ РОЗВИЛКИ (З ОКІНО) ====================
     {
         id: "forest_werewolves_okino",
-        scene: "jungle-world-animated.html",
+        scene: "forest-fork-animated.html",
         npc: ["okino-front.png", "enemy-werewolf.png"],
         lines: [
             [okino, "Попереду вже видно розвилку та високі вітряки поселення Роздоріж!"],
@@ -538,7 +540,7 @@ const story = [
     },
     {
         id: "werewolves_hammer_win",
-        scene: "jungle-world-animated.html",
+        scene: "forest-fork-animated.html",
         npc: "okino-front.png",
         give: "Ікло перевертня",
         set: { helped_okino_wolves: true },
@@ -550,7 +552,7 @@ const story = [
     },
     {
         id: "werewolves_help_win",
-        scene: "jungle-world-animated.html",
+        scene: "forest-fork-animated.html",
         npc: "okino-front.png",
         hp: -15,
         give: "Ікло перевертня",
@@ -563,12 +565,12 @@ const story = [
     },
     {
         id: "werewolves_help_lose",
-        scene: "jungle-world-animated.html",
+        scene: "forest-fork-animated.html",
         lose: "Зграя перевертнів зімкнула кільце. Їх виявилося надто багато."
     },
     {
         id: "werewolves_run_right",
-        scene: "jungle-world-animated.html",
+        scene: "forest-fork-animated.html",
         npc: "okino-front.png",
         lines: [
             ["", "Ти прориваєшся направо до воріт поселення, з тривогою озираючись на ліс..."],
@@ -581,7 +583,7 @@ const story = [
     // ==================== ГІЛКА 2: ЛІС ПРИКРОЩІВ САМОТУЖКИ ====================
     {
         id: "forest_alone_start",
-        scene: "jungle-world-animated.html",
+        scene: "vine-gate-animated.html",
         npc: "okino-front.png",
         set: { with_okino: false },
         lines: [
@@ -606,6 +608,7 @@ const story = [
     {
         id: "alone_wolves_win",
         scene: "jungle-world-animated.html",
+        npc: "",
         hp: -25,
         give: "Ікло перевертня",
         lines: [
@@ -621,7 +624,7 @@ const story = [
     },
     {
         id: "cave_alone",
-        scene: "digital-tunnel.html",
+        scene: "cave-animated.html",
         npc: "enemy-cave-troll.png",
         give: "Міцна ліана",
         lines: [
@@ -635,7 +638,8 @@ const story = [
     },
     {
         id: "cave_alone_hammer",
-        scene: "digital-tunnel.html",
+        scene: "cave-animated.html",
+        npc: "",
         give: "Гірський кристал",
         lines: [
             ["", "Удар Молота струшує склепіння, і кам'яна завіса відрізає троля! Серед уламків ти знаходиш сяючий Гірський кристал і виходиш до розвилки."]
@@ -644,7 +648,8 @@ const story = [
     },
     {
         id: "cave_alone_win",
-        scene: "digital-tunnel.html",
+        scene: "cave-animated.html",
+        npc: "",
         lines: [
             ["", "Ступаючи абсолютно безшумно, ти проходиш за спиною сонного велетня і вибираєшся з печери просто до розвилки."]
         ],
@@ -652,19 +657,20 @@ const story = [
     },
     {
         id: "cave_alone_lose",
-        scene: "digital-tunnel.html",
+        scene: "cave-animated.html",
         lose: "Під ногою хруснув камінь. У тісній печері від розлюченого троля не втекти!"
     },
 
     // ==================== РОЗВИЛКА У ЛІСІ ====================
     {
         id: "forest_fork_choice",
-        scene: "jungle-world-animated.html",
+        scene: "forest-fork-animated.html",
+        npc: "",
         place: "fork",
         checkpoint: true,
         hint: "Окіно попереджав: права стежка веде до міста Роздоріж і Гір, а ліва — в небезпечну Ілюзію.",
         lines: [
-            ["", "Ти стоїш перед стародавнім дороговказом. Праворуч видніються вогні та вітряки укріпленого містечка Роздоріж."],
+            ["", "Ти стоїш перед стародавнім дороговказом на розвилці. Праворуч видніються вогні та вітряки укріпленого містечка Роздоріж."],
             ["", "Ліворуч стежка поринає у багряно-фіолетовий туман, звідки лунає таємничий гул."]
         ],
         choices: [
@@ -676,7 +682,7 @@ const story = [
     // ==================== МІСТО РОЗДОРІЖ ТА ПОБІЧНІ КВЕСТИ ====================
     {
         id: "fork_town",
-        scene: "arcade-city-animated.html",
+        scene: "crossroads-town-animated.html",
         npc: s => s.flags.with_okino ? "okino-front.png" : "",
         place: "fork",
         checkpoint: true,
@@ -697,7 +703,7 @@ const story = [
     },
     {
         id: "town_blacksmith",
-        scene: "arcade-city-animated.html",
+        scene: "crossroads-town-animated.html",
         npc: "npc-takeshi.png",
         lines: [
             ["Коваль Такеші", "Ого, бачу у твоїх руках {weapon}! Якщо маєш рідкісні трофеї з лісу, я загартую твою зброю в плазмовому горні та дам Сталевий карабін для гірського гарпуна."],
@@ -713,7 +719,8 @@ const story = [
     },
     {
         id: "blacksmith_reward",
-        scene: "arcade-city-animated.html",
+        scene: "crossroads-town-animated.html",
+        npc: "npc-takeshi.png",
         hp: 15,
         set: { weapon_upgraded: true },
         lines: [
@@ -723,17 +730,18 @@ const story = [
     },
     {
         id: "blacksmith_vines_task",
-        scene: "jungle-world-animated.html",
+        scene: "vine-gate-animated.html",
+        npc: "",
         hp: -10,
         give: "Міцна ліана",
         lines: [
-            ["", "На узліссі ти нарубав оберемок лози для кузні, а найміцнішу 🌿Міцну ліану залишив собі для гарпуна."]
+            ["", "На узліссі біля воріт ти нарубав оберемок лози для кузні, а найміцнішу 🌿Міцну ліану залишив собі для гарпуна."]
         ],
         next: "fork_town"
     },
     {
         id: "town_herbalist",
-        scene: "arcade-city-animated.html",
+        scene: "crossroads-town-animated.html",
         npc: "npc-mia.png",
         hp: 30,
         lines: [
@@ -745,10 +753,10 @@ const story = [
     },
     {
         id: "town_bounty",
-        scene: "arcade-city-animated.html",
+        scene: "crossroads-town-animated.html",
         npc: "boss-shadow-stalker.png",
         lines: [
-            ["", "Ти берешся за контракт «Тінь Роздоріжжя»: у сутінках біля старого мосту чатує Лісовий Тіньовик, який викрадає енергію мандрівників."],
+            ["", "Ти берешся за контракт «Тінь Роздоріжжя»: у сутінках на лісовій розвилці за містом чатує Лісовий Тіньовик, який викрадає енергію мандрівників."],
             ["", "Вже виконано! Старійшина дякує тобі за безпеку доріг.", s => s.quests.bounty === "done"]
         ],
         choices: [
@@ -759,7 +767,8 @@ const story = [
     },
     {
         id: "bounty_win_clean",
-        scene: "jungle-world-animated.html",
+        scene: "forest-fork-animated.html",
+        npc: "npc-elder.png",
         give: "Еліксир Драконоборця",
         finishQuest: "bounty",
         lines: [
@@ -770,26 +779,26 @@ const story = [
     },
     {
         id: "bounty_win",
-        scene: "jungle-world-animated.html",
-        npc: ["boss-shadow-stalker.png", "npc-elder.png"],
+        scene: "forest-fork-animated.html",
+        npc: "npc-elder.png",
         hp: -20,
         give: "Еліксир Драконоборця",
         finishQuest: "bounty",
         lines: [
-            ["", "У важкому нічному поєдинку ти перемагаєш Лісового Тіньовика і здобуваєш головну нагороду міста — 🏆Еліксир Драконоборця!"]
+            ["", "У важкому нічному поєдинку ти перемагаєш Лісового Тіньовика і здобуваєш головну нагороду від Старійшини — 🏆Еліксир Драконоборця!"]
         ],
         next: "fork_town"
     },
     {
         id: "bounty_lose",
-        scene: "jungle-world-animated.html",
+        scene: "forest-fork-animated.html",
         lose: "Лісовий Тіньовик виявився надто стрімким у нічному тумані."
     },
 
     // ==================== ГАРПУННИЙ МІСТ ТА ГОРИ ІСТЕРІЇ ====================
     {
         id: "road_to_harpoon_town",
-        scene: "sword-field-animated.html",
+        scene: "harpoon-market-animated.html",
         npc: "okino-front.png",
         lines: [
             [empire, "ЛОКАЦІЯ: ПІДНІЖЖЯ ГІР ІСТЕРІЇ. ПОПЕРЕДЖЕННЯ ПРО ОБВАЛИ."],
@@ -800,7 +809,7 @@ const story = [
     },
     {
         id: "merchant",
-        scene: "arcade-city-animated.html",
+        scene: "harpoon-market-animated.html",
         npc: ["okino-front.png", "npc-merchant.png"],
         place: "harpoon_town",
         checkpoint: true,
@@ -820,7 +829,7 @@ const story = [
     },
     {
         id: "harpoon_safe_climb",
-        scene: "sword-field-animated.html",
+        scene: "harpoon-market-animated.html",
         npc: "okino-front.png",
         lines: [
             ["", "Гарпун зі свистом вгризається у скелю на вершині, і посилений трос легко підіймає вас над хмарами!"],
@@ -830,7 +839,7 @@ const story = [
     },
     {
         id: "harpoon_lucky_climb",
-        scene: "sword-field-animated.html",
+        scene: "harpoon-market-animated.html",
         npc: "okino-front.png",
         hp: -20,
         finishQuest: "harpoon",
@@ -842,12 +851,12 @@ const story = [
     },
     {
         id: "harpoon_snap_lose",
-        scene: "sword-field-animated.html",
+        scene: "harpoon-market-animated.html",
         lose: "Старий потертий трос обірвався посеред підйому над гірською прірвою."
     },
     {
         id: "mountain_troll_encounter",
-        scene: "sword-field-animated.html",
+        scene: "harpoon-market-animated.html",
         npc: ["okino-front.png", "npc-mountain-troll.png"],
         hint: "Пам'ятай попередження травниці Мії про гірських тролів!",
         lines: [
@@ -865,7 +874,7 @@ const story = [
     },
     {
         id: "troll_exposed",
-        scene: "sword-field-animated.html",
+        scene: "harpoon-market-animated.html",
         npc: "okino-front.png",
         finishQuest: "harpoon",
         lines: [
@@ -884,13 +893,13 @@ const story = [
     // ==================== ГІЛКА 3: НЕПРАВИЛЬНИЙ ШЛЯХ (ХИТКИЙ МІСТ, БЕЗОДНЯ, ДИНОДОЛ, ІЛЮЗІЯ) ====================
     {
         id: "wrong_way_start",
-        scene: "digital-tunnel.html",
+        scene: "rope-bridge-animated.html",
         npc: "",
         place: "shaky_bridge",
         lines: [
             [empire, "ПОПЕРЕДЖЕННЯ: ВИ УВІЙШЛИ ДО СЕКТОРУ ПОШКОДЖЕНОГО КОДУ «ІЛЮЗІЯ»."],
             [you, "Окіно тут немає... Чорт, я звернув наліво! Саме про це він казав: «Там буде дещо страшніше за дракона»!"],
-            ["", "Шлях назад заблоковано стіною червоних пікселів. Попереду висить гнилий Хиткий Міст, а поруч веде крутий спуск у темну Безодню."]
+            ["", "Шлях назад заблоковано стіною червоних пікселів. Попереду над прірвою висить гнилий Хиткий Міст, а поруч веде крутий спуск у темну Безодню."]
         ],
         choices: [
             { text: "🌉 Перелетіти через Хиткий Міст завдяки «Рефлексу Блискавки»", requires: "katana_reflex", next: "shaky_bridge_win" },
@@ -900,7 +909,8 @@ const story = [
     },
     {
         id: "shaky_bridge_win",
-        scene: "digital-tunnel.html",
+        scene: "rope-bridge-animated.html",
+        npc: "",
         lines: [
             ["", "Дошки падають у прірву просто з-під твоїх ніг, але ти встигаєш перестрибнути на протилежний виступ!"]
         ],
@@ -908,16 +918,16 @@ const story = [
     },
     {
         id: "shaky_bridge_lose",
-        scene: "digital-tunnel.html",
+        scene: "rope-bridge-animated.html",
         lose: "Трухлявий міст обірвався над прірвою."
     },
     {
         id: "abyss_descent",
-        scene: "digital-tunnel.html",
+        scene: "rope-bridge-animated.html",
         npc: "enemy-abyss-wraith.png",
         place: "abyss",
         lines: [
-            ["", "На дні Безодні панує абсолютна темрява, в якій блукають голографічні фантоми переможених гравців 😨."]
+            ["", "На дні Безодні під мостом панує крижана імла, в якій блукають голографічні фантоми переможених гравців 😨."]
         ],
         choices: [
             { text: "✨ Освітити Безодню кристалом Посоха", requires: "Посох", next: "abyss_staff_pass" },
@@ -927,7 +937,8 @@ const story = [
     },
     {
         id: "abyss_staff_pass",
-        scene: "digital-tunnel.html",
+        scene: "rope-bridge-animated.html",
+        npc: "",
         lines: [
             ["", "Яскраве світло розсіює фантомів Безодні, відкриваючи стародавній підйом до Динодолу."]
         ],
@@ -935,7 +946,8 @@ const story = [
     },
     {
         id: "abyss_blind_win",
-        scene: "digital-tunnel.html",
+        scene: "rope-bridge-animated.html",
+        npc: "",
         hp: -20,
         lines: [
             ["", "Крижані тіні витягують частину твоїх сил у темряві, але ти вперто видираєшся по скелях наверх!"]
@@ -944,19 +956,19 @@ const story = [
     },
     {
         id: "abyss_blind_lose",
-        scene: "digital-tunnel.html",
+        scene: "rope-bridge-animated.html",
         lose: "Темрява Безодні поглинула твій аватар."
     },
 
     // ==================== ДИНОДОЛ ТА БРАМА ІЛЮЗІЇ ====================
     {
         id: "dino_valley_scene",
-        scene: "jungle-world-animated.html",
+        scene: "dino-valley-animated.html",
         npc: "boss-dino-rex.png",
         place: "dino_valley",
         checkpoint: true,
         lines: [
-            ["", "Земля двигтить від важкої ходи. Крізь джунглі виходить 🦖гігантський кібер-тиранозавр із червоними очима!"],
+            ["", "Земля двигтить від важкої ходи. Крізь гігантські папороті виходить 🦖кібер-тиранозавр із червоними очима!"],
             [you, "То ось що страшніше за дракона! А позаду нього височіє Брама Ілюзії, де сяє Катана-ключ🗝️!"]
         ],
         choices: [
@@ -967,25 +979,29 @@ const story = [
     },
     {
         id: "dino_distract_win",
-        scene: "jungle-world-animated.html",
+        scene: "dino-valley-animated.html",
+        npc: "okino-front.png",
         place: "gate",
         lines: [
-            ["", "Хижак чує здобич і з ревом кидається у протилежний бік долини, звільняючи прохід до Брами Ілюзії!"]
+            ["", "Хижак чує здобич і з ревом кидається у протилежний бік долини! Біля самої Брами Ілюзії тебе раптом наздоганяє захеканий Окіно."],
+            [okino, "Майстре {name}! Коли ви не з'явилися біля гір, я вирушив вашим слідом крізь Безодню. Добре, що ви цілі!"]
         ],
         next: "illusion_gate"
     },
     {
         id: "dino_stealth_win",
-        scene: "jungle-world-animated.html",
+        scene: "dino-valley-animated.html",
+        npc: "okino-front.png",
         place: "gate",
         lines: [
-            ["", "Затамувавши подих, ти прослизаєш у тіні величезних папоротей просто до Брами Ілюзії!"]
+            ["", "Затамувавши подих, ти прослизаєш у тіні величезних папоротей просто до Брами Ілюзії, куди зі скель спускається Окіно!"],
+            [okino, "Майстре {name}! Я пішов вашим слідом, щойно зрозумів, що ви звернули на лівий шлях!"]
         ],
         next: "illusion_gate"
     },
     {
         id: "dino_spotted",
-        scene: "jungle-world-animated.html",
+        scene: "dino-valley-animated.html",
         npc: "okino-sword.png",
         hp: -25,
         lines: [
@@ -996,9 +1012,10 @@ const story = [
             [okino, "Коли вас не виявилося на Гарпунному Мості, я зрозумів, що ви потрапили в Ілюзію, і кинувся слідом. Швидше до Брами!"]
         ],
         next: "illusion_gate"
-    },{
+    },
+    {
         id: "illusion_gate",
-        scene: "digital-tunnel.html",
+        scene: "illusion-gate-animated.html",
         npc: "okino-front.png",
         place: "gate",
         hint: "В Ілюзії код світу нестабільний — оглянь glitch-розлом у стіні, щоб дізнатися головну таємницю Імперії!",
@@ -1015,7 +1032,7 @@ const story = [
     {
         id: "illusion_secret_vision",
         scene: "arcade-empire-portal.html",
-        keepScene: true, // щоб sceneRules не замінив екран автомата на illusion-gate-animated.html
+        keepScene: true,
         npc: "",
         give: "Фрагмент Ядра",
         set: { saw_unagami: true },
@@ -1029,7 +1046,7 @@ const story = [
     },
     {
         id: "illusion_gate_trial",
-        scene: "digital-tunnel.html",
+        scene: "illusion-gate-animated.html",
         npc: "okino-front.png",
         place: "illusion",
         hint: "Справжній код Теракарани має холодне неоново-блакитне світіння.",
@@ -1046,13 +1063,13 @@ const story = [
     },
     {
         id: "illusion_trap_lose",
-        scene: "digital-tunnel.html",
+        scene: "illusion-gate-animated.html",
         npc: "",
         lose: "Золота катана виявилася вибуховою голограмою Ілюзії!"
     },
     {
         id: "illusion_true_choice",
-        scene: "digital-tunnel.html",
+        scene: "illusion-gate-animated.html",
         npc: "okino-front.png",
         give: "Катана-ключ",
         finishQuest: "key",
@@ -1066,7 +1083,7 @@ const story = [
     // ==================== ЛАБІРИНТ ЧЕРВОНОГО ДРАКОНА (ОСНОВНИЙ ШЛЯХ) ====================
     {
         id: "labyrinth_entrance",
-        scene: "digital-tunnel.html",
+        scene: "labyrinth-animated.html",
         npc: "okino-front.png",
         place: "labyrinth",
         checkpoint: true,
@@ -1083,7 +1100,7 @@ const story = [
     },
     {
         id: "labyrinth_memory_awakened",
-        scene: "digital-tunnel.html",
+        scene: "labyrinth-animated.html",
         npc: "okino-sword.png",
         set: { okino_awakened: true },
         lines: [
@@ -1095,7 +1112,7 @@ const story = [
     },
     {
         id: "labyrinth_riddle",
-        scene: "digital-tunnel.html",
+        scene: "labyrinth-animated.html",
         npc: "okino-front.png",
         hint: "Пригадай, після якого рівня в ігровому автоматі відкрився портал у Верховну Імперію.",
         lines: [
@@ -1110,7 +1127,7 @@ const story = [
     },
     {
         id: "labyrinth_riddle_right",
-        scene: "digital-tunnel.html",
+        scene: "labyrinth-animated.html",
         npc: "okino-front.png",
         lines: [
             [empire, "КОД ПРИЙНЯТО. ДОСТУП ДО ТРОННОГО ЗАЛУ ДРАКОНА ДОЗВОЛЕНО."],
@@ -1120,7 +1137,7 @@ const story = [
     },
     {
         id: "labyrinth_riddle_wrong",
-        scene: "digital-tunnel.html",
+        scene: "labyrinth-animated.html",
         npc: "okino-sword.png",
         hp: -15,
         lines: [
@@ -1131,7 +1148,7 @@ const story = [
     },
     {
         id: "dragon_lair",
-        scene: "arcade-fight-animated.html",
+        scene: "dragon-lair-animated.html",
         npc: ["okino-front.png", "boss-red-dragon.png"],
         place: "labyrinth",
         checkpoint: true,
@@ -1149,7 +1166,7 @@ const story = [
     },
     {
         id: "dragon_stealth_win",
-        scene: "arcade-fight-animated.html",
+        scene: "dragon-lair-animated.html",
         npc: "okino-front.png",
         give: "Катана-ключ",
         finishQuest: "key",
@@ -1161,7 +1178,7 @@ const story = [
     },
     {
         id: "dragon_epic_slay",
-        scene: "arcade-fight-animated.html",
+        scene: "dragon-lair-animated.html",
         npc: "okino-sword.png",
         give: "Катана-ключ",
         finishQuest: "key",
@@ -1173,7 +1190,7 @@ const story = [
     },
     {
         id: "dragon_awakes",
-        scene: "arcade-fight-animated.html",
+        scene: "dragon-lair-animated.html",
         npc: ["okino-sword.png", "boss-red-dragon.png"],
         lines: [
             ["", "🟥Червоний 🐉Дракон розплющує палаючі очі й здіймається під склепіння залу, набираючи в груди полум'я!"],
@@ -1189,7 +1206,7 @@ const story = [
     },
     {
         id: "dragon_burn_lose",
-        scene: "arcade-fight-animated.html",
+        scene: "dragon-lair-animated.html",
         lose: "Вогняний шторм Червоного Дракона спопелив арену."
     },
 
