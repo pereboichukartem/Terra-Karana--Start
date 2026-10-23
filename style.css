@@ -1190,3 +1190,97 @@ canvas {
     padding: 0;
     list-style: none;
 }
+
+
+/* ---------- ФІКС ІНВЕНТАРЮ ТА ПОВНА АДАПТИВНІСТЬ ---------- */
+.inventory {
+    min-width: 150px;
+    max-width: 280px;
+    max-height: 140px;
+    overflow-y: auto;
+}
+
+.inventory ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Адаптація для планшетів та смартфонів (до 768px) */
+@media (max-width: 768px) {
+    /* Щоб персонажі та боси не вилізали за межі вузького екрана */
+    #npc1, #npc2, #npc3 {
+        max-height: 50vh !important;
+        max-width: 44vw;
+        object-fit: contain;
+        bottom: 14vh;
+    }
+
+    /* На сенсорних екранах одразу показуємо підписи відкритих точок карти */
+    .mp:not(.locked) span {
+        display: block;
+        font-size: 7px;
+    }
+
+    .setting-row,
+    .setting-row--check {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+/* Адаптація для смартфонів (до 480px) */
+@media (max-width: 480px) {
+    .game-container.on .game-ui {
+        inset: 8px 8px auto;
+    }
+
+    .inventory {
+        min-width: 0;
+        max-width: 52vw;
+        max-height: 95px;
+    }
+
+    .right-panel {
+        right: 8px;
+        top: 8px;
+        gap: 6px;
+    }
+
+    .menu-btn {
+        padding: 7px 10px;
+        font-size: 8px;
+    }
+
+    .game-container.on .dialogue-box {
+        width: 94vw;
+        bottom: 10px;
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .game-container.on .dialogue-box p {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .game-container.on #choices {
+        width: 94vw;
+        bottom: 120px;
+        max-height: 42vh;
+        overflow-y: auto;
+        gap: 6px;
+    }
+
+    #choices button,
+    #choices .hint {
+        padding: 8px 10px;
+        font-size: 9px;
+        line-height: 1.3;
+        width: 100%;
+        text-align: left;
+    }
+}
