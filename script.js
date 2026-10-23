@@ -753,7 +753,7 @@ const story = [
     },
     {
         id: "town_bounty",
-        scene: "crossroads-town-animated.html",
+        scene: "forest-fork-animated.html",
         npc: "boss-shadow-stalker.png",
         lines: [
             ["", "Ти берешся за контракт «Тінь Роздоріжжя»: у сутінках на лісовій розвилці за містом чатує Лісовий Тіньовик, який викрадає енергію мандрівників."],
@@ -767,7 +767,7 @@ const story = [
     },
     {
         id: "bounty_win_clean",
-        scene: "forest-fork-animated.html",
+        scene: "crossroads-town-animated.html",
         npc: "npc-elder.png",
         give: "Еліксир Драконоборця",
         finishQuest: "bounty",
@@ -779,7 +779,7 @@ const story = [
     },
     {
         id: "bounty_win",
-        scene: "forest-fork-animated.html",
+        scene: "crossroads-town-animated.html",
         npc: "npc-elder.png",
         hp: -20,
         give: "Еліксир Драконоборця",
@@ -798,7 +798,7 @@ const story = [
     // ==================== НОВА ДОРОГА МІЖ РОЗДОРІЖЖЯМ ТА ГАРПУННИМ МОСТОМ (ЧЕРЕЗ 2 НОВИХ ФОНИ) ====================
     {
         id: "road_to_harpoon_town",
-        scene: "mountain-track-animated.html",
+        scene: "crystal-road-animated.html",
         npc: "okino-front.png",
         hint: "Кам'янистий гірський тракт небезпечний через обвали, але веде прямісінько до мети.",
         lines: [
@@ -814,7 +814,7 @@ const story = [
     },
     {
         id: "tract_pass_win",
-        scene: "mountain-track-animated.html",
+        scene: "crystal-road-animated.html",
         npc: "okino-front.png",
         lines: [
             ["", "Ти робиш стрімкий ривок уперед якраз тоді, коли тонни каміння з гуркотом обрушуються позаду тебе!"],
